@@ -142,7 +142,7 @@ export default function Game(props: any) {
           <View style={styles.row}>
             <Pressable
               style={styles.btn}
-              onPress={() => {setBoard(DEFAULT_BOARD())}}
+              onPress={() => {setBoard(DEFAULT_BOARD()); setWinner(PLAYERS.NONE)}}
             >
               <Text style={styles.text}>Play again?</Text>
             </Pressable>
