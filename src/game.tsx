@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
-import {PLAYERS, DEFAULT_BOARD} from "./constants"
+import { PLAYERS, DEFAULT_BOARD } from "./constants";
 
 export default function Game(props: any) {
   const [turn, setTurn] = useState(PLAYERS.PLAYER1);
@@ -111,18 +111,22 @@ export default function Game(props: any) {
   };
 
   return (
-    <View style={{ paddingTop: 50 }}>
-      <Text style={{ textAlign: "center", fontSize: 25 }}>
-        {winner === PLAYERS.NONE && (
-          <>
-            {turn === PLAYERS.PLAYER1 ? "Player X's turn" : "Player O's turn"}
-          </>
-        )}
-        {winner === PLAYERS.PLAYER1 && "Player X won!"}
-        {winner === PLAYERS.PLAYER2 && "Player O won!"}
-        {winner === PLAYERS.TIE && "Tie"}
-      </Text>
+    <View style={styles.container}>
       <View style={styles.container}>
+        <View>
+          <Text style={{ textAlign: "center", fontSize: 50 }}>
+            {winner === PLAYERS.NONE && (
+              <>
+                {turn === PLAYERS.PLAYER1
+                  ? "Player X's turn"
+                  : "Player O's turn"}
+              </>
+            )}
+            {winner === PLAYERS.PLAYER1 && "Player X won!"}
+            {winner === PLAYERS.PLAYER2 && "Player O won!"}
+            {winner === PLAYERS.TIE && "Tie"}
+          </Text>
+        </View>
         <View style={styles.row}>
           <Cell player={board[0][0]} x={0} y={0} />
           <Cell player={board[0][1]} x={1} y={0} />
@@ -142,7 +146,10 @@ export default function Game(props: any) {
           <View style={styles.row}>
             <Pressable
               style={styles.btn}
-              onPress={() => {setBoard(DEFAULT_BOARD()); setWinner(PLAYERS.NONE)}}
+              onPress={() => {
+                setBoard(DEFAULT_BOARD());
+                setWinner(PLAYERS.NONE);
+              }}
             >
               <Text style={styles.text}>Play again?</Text>
             </Pressable>
@@ -154,7 +161,11 @@ export default function Game(props: any) {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   row: {
     justifyContent: "center",
     flexDirection: "row",
@@ -179,5 +190,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 30,
     color: "white",
+    textAlign: "center",
   },
 });
