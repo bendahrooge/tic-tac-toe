@@ -10,7 +10,7 @@ export default function Game(props: any) {
   const [board, setBoard] = useState(DEFAULT_BOARD());
 
   const onMove = (row: number, col: number) => {
-    // Check if already a wiiner has been determined
+    // Check if already a winner has been determined
     if (winner != PLAYERS.NONE) {
       return;
     }
@@ -19,11 +19,8 @@ export default function Game(props: any) {
     if (board[row][col] === PLAYERS.NONE) {
       let b = board;
 
-      if (turn === PLAYERS.PLAYER1) {
-        b[row][col] = PLAYERS.PLAYER1;
-      } else {
-        b[row][col] = PLAYERS.PLAYER2;
-      }
+      // Assign the player to the tile they moved into
+      b[row][col] = turn;
 
       setBoard(b);
 
